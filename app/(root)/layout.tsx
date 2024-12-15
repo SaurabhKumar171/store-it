@@ -8,8 +8,6 @@ import React from "react";
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const currentUser = await getCurrentUser();
 
-  console.log("currentUser - ", currentUser);
-
   if (!currentUser) return redirect("/sign-in");
 
   return (
