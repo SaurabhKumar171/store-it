@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import Image from "next/image";
@@ -11,7 +11,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@mui/material";
+import { Button } from "./ui/button";
 import {
   InputOTP,
   InputOTPGroup,
@@ -22,7 +22,7 @@ import { useRouter } from "next/navigation";
 
 const OtpModal = ({
   email,
-  accountId
+  accountId,
 }: {
   email: string;
   accountId: string;
@@ -38,9 +38,9 @@ const OtpModal = ({
 
     try {
       // call API to verify OTP
-      const sessionId = await verifySecret({ accountId, password});
+      const sessionId = await verifySecret({ accountId, password });
 
-      if(sessionId) router.push("/"); // to home page
+      if (sessionId) router.push("/"); // to home page
     } catch (error) {
       console.log("Failed to verify OTP!", error);
     }
@@ -69,55 +69,53 @@ const OtpModal = ({
             />
           </AlertDialogTitle>
           <AlertDialogDescription className="subtitle-2 text-center text-light-100">
-            We&apos;ve sent a code <span className="pl-1 text-brand">{email}</span>
+            We&apos;ve sent a code{" "}
+            <span className="pl-1 text-brand">{email}</span>
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <InputOTP maxLength={6} value={password} onChange={setPassword}>
           <InputOTPGroup className="shad-otp">
-            <InputOTPSlot index={0}  className="shad-otp-slot"/>
-            <InputOTPSlot index={1}  className="shad-otp-slot"/>
-            <InputOTPSlot index={2}  className="shad-otp-slot"/>
-            <InputOTPSlot index={3}  className="shad-otp-slot"/>
-            <InputOTPSlot index={4}  className="shad-otp-slot"/>
-            <InputOTPSlot index={5}  className="shad-otp-slot"/>
+            <InputOTPSlot index={0} className="shad-otp-slot" />
+            <InputOTPSlot index={1} className="shad-otp-slot" />
+            <InputOTPSlot index={2} className="shad-otp-slot" />
+            <InputOTPSlot index={3} className="shad-otp-slot" />
+            <InputOTPSlot index={4} className="shad-otp-slot" />
+            <InputOTPSlot index={5} className="shad-otp-slot" />
           </InputOTPGroup>
         </InputOTP>
 
         <AlertDialogFooter className="flex flex-col">
-            <div className="flex w-full flex-col gap-4">
-                <AlertDialogAction
-                    onClick={handleSubmit}
-                    className="shad-submit-btn h-12"
-                    type="button"
-                >
-                    Submit
-                   {isLoading && (
-                        <Image 
-                        src="/assets/icons/loader.svg"
-                        alt="loading"
-                        width={24}
-                        height={24}
-                        className="ml-2 animate-spin"
-                        />)
-                    }
-                </AlertDialogAction>
-            
-            
+          <div className="flex w-full flex-col gap-4">
+            <AlertDialogAction
+              onClick={handleSubmit}
+              className="shad-submit-btn h-12"
+              type="button"
+            >
+              Submit
+              {isLoading && (
+                <Image
+                  src="/assets/icons/loader.svg"
+                  alt="loading"
+                  width={24}
+                  height={24}
+                  className="ml-2 animate-spin"
+                />
+              )}
+            </AlertDialogAction>
 
-                <div className="subtitle-2 mt-2 text-center text-light-100">
-                  Didn&apos;t get a code?
-                  <Button
-                    type="button"
-                    variant="link"
-                    className="pl-1 font-medium lowercase text-brand"
-                    onClick={handleResendOtp}
-                  >
-                    Click to resend
-                  </Button>
-                </div>
+            <div className="subtitle-2 mt-2 text-center text-light-100">
+              Didn&apos;t get a code?
+              <Button
+                type="button"
+                variant="link"
+                className="pl-1 font-medium lowercase text-brand"
+                onClick={handleResendOtp}
+              >
+                Click to resend
+              </Button>
             </div>
-
+          </div>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
