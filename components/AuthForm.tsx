@@ -67,7 +67,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
       setIsLoading(false);
     }
 
-    console.log(values);
+    // console.log(values);
   };
 
   return (
