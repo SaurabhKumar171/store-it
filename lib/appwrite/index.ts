@@ -15,7 +15,7 @@ export const createSessionClient = async () => {
 
     if(!session || !session.value) throw new Error('No session');
 
-    client.setSession("nhi hai");
+    client.setSession(session.value);
 
     return {
         get account(){
